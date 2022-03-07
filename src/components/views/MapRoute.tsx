@@ -9,14 +9,23 @@ import { renderPoint } from "../renderPoint"
 import { renderRoute } from "../renderRoute"
 import { DirectionsList } from "../DirectionsList"
 import { useViewportSize } from "@mantine/hooks"
+import { Dispatch, SetStateAction } from "react"
 
 interface Props {
 	mapRoute: any
 	userLatitude: number
 	userLongitude: number
+	view: "route" | "pins"
+	setView: Dispatch<SetStateAction<"route" | "pins">>
 }
 
-export const MapRoute = ({ mapRoute, userLatitude, userLongitude }: Props) => {
+export const MapRoute = ({
+	mapRoute,
+	userLatitude,
+	userLongitude,
+	view,
+	setView
+}: Props) => {
 	const { height } = useViewportSize()
 
 	if (mapRoute.legs[0]?.points.length > 0) {
@@ -72,7 +81,11 @@ export const MapRoute = ({ mapRoute, userLatitude, userLongitude }: Props) => {
 						</AzureMap>
 					</AzureMapsProvider>
 				</div>
-				<DirectionsList directions={mapRoute.guidance} />
+				<DirectionsList
+					view={view}
+					directions={mapRoute.guidance}
+					setView={setView}
+				/>
 			</div>
 		)
 	}

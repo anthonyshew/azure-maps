@@ -7,6 +7,7 @@ import { getRoute } from "../utils/getRoute"
 
 interface Props {
 	points: Array<IPoi>
+	view: "route" | "pins"
 	setView: Dispatch<SetStateAction<"route" | "pins">>
 	setMapRoute: Dispatch<
 		SetStateAction<{
@@ -18,7 +19,7 @@ interface Props {
 	>
 }
 
-export const PointsList = ({ points, setMapRoute, setView }: Props) => {
+export const PointsList = ({ points, setMapRoute, view, setView }: Props) => {
 	const { userLatitude, userLongitude } = useUserGeo()
 	const { colors } = useMantineTheme()
 
@@ -38,9 +39,8 @@ export const PointsList = ({ points, setMapRoute, setView }: Props) => {
 		})
 	}
 	return (
-		<LowerList title="Parks Near You!">
+		<LowerList title="Parks Near You!" icon="🌳" view={view} setView={setView}>
 			{points.map((point) => {
-				console.log(point)
 				return (
 					<List.Item
 						key={point.position.lat + point.position.lon}

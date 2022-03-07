@@ -40,6 +40,8 @@ const App = () => {
 				)}
 				{view === "route" && mapRoute.legs[0]?.points.length > 0 && (
 					<MapRoute
+						view={view}
+						setView={setView}
 						mapRoute={mapRoute}
 						userLatitude={userLatitude || 0}
 						userLongitude={userLongitude || 0}

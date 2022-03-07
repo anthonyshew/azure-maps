@@ -85,6 +85,7 @@ export const SearchResults = ({
 					</AzureMapsProvider>
 				</div>
 				<PointsList
+					view={view}
 					points={points}
 					setView={setView}
 					setMapRoute={setMapRoute}
