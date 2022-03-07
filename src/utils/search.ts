@@ -21,6 +21,7 @@ export const search = async ({ longitude, latitude }: Params) => {
 		requestUrl.searchParams.append("radius", String(100000))
 		requestUrl.searchParams.append("limit", String(10))
 		requestUrl.searchParams.append("query", "park")
+		requestUrl.searchParams.append("categorySet", "9362008")
 		console.log(requestUrl.toString())
 
 		const response = fetch(requestUrl.toString()).then((res) => res.json())
