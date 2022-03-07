@@ -11,6 +11,7 @@ export const renderPoint = (point: Params): IAzureMapFeature => {
 
 	return (
 		<AzureMapFeature
+			key={latitude + longitude}
 			type="Point"
 			coordinate={[longitude, latitude]}
 			properties={{

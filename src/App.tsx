@@ -1,5 +1,4 @@
 import "./App.css"
-import { useState } from "react"
 import {
 	AzureMap,
 	AzureMapDataSourceProvider,
@@ -11,26 +10,16 @@ import { AuthenticationType } from "azure-maps-control"
 import { useViewportSize } from "@mantine/hooks"
 import { useUserGeo } from "./hooks/useUserGeo"
 import { renderPoint } from "./components/renderPoints"
-import { useEffect } from "react"
-import { search } from "./utils/search"
-import { IPoi } from "./types"
+import { useSearchParks } from "./hooks/useSearchParks"
+import PoiList from "./components/PoiList"
 
 const App = () => {
 	const { height, width } = useViewportSize()
 	const { userLatitude, userLongitude } = useUserGeo()
-	const [points, setPoints] = useState<IPoi[]>([])
-
-	useEffect(() => {
-		if (userLatitude && userLongitude) {
-			search({ latitude: userLatitude, longitude: userLongitude }).then(
-				(res) => {
-					if (res) return setPoints(res.results)
-				}
-			)
-		}
-	}, [userLongitude, userLatitude])
-
-	console.log(points)
+	const points = useSearchParks({
+		latitude: userLatitude || 0,
+		longitude: userLongitude || 0
+	})
 
 	return (
 		<MantineProvider withNormalizeCSS>
@@ -84,6 +73,7 @@ const App = () => {
 					</AzureMapsProvider>
 				)}
 			</div>
+			<PoiList points={points} />
 		</MantineProvider>
 	)
 }
