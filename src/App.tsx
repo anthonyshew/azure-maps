@@ -10,7 +10,7 @@ import { SearchResults } from "./components/views/SearchResults"
 
 const App = () => {
 	const [view, setView] = useState<"pins" | "route">("pins")
-	const { height, width } = useViewportSize()
+	const { width } = useViewportSize()
 
 	const [mapRoute, setMapRoute] = useState<{
 		guidance: any

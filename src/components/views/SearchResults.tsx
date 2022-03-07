@@ -85,6 +85,8 @@ export const SearchResults = ({
 					</AzureMapsProvider>
 				</div>
 				<PointsList
+					userLatitude={userLatitude}
+					userLongitude={userLongitude}
 					view={view}
 					points={points}
 					setView={setView}

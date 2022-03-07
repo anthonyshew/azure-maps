@@ -10,6 +10,8 @@ interface Params {
 }
 
 export const getRoute = async ({ origin, destination }: Params) => {
+	console.log(origin, destination)
+
 	const originPos = `${origin.lat},${origin.lon}`
 	const destinationPos = `${destination.lat},${destination.lon}`
 
@@ -26,6 +28,8 @@ export const getRoute = async ({ origin, destination }: Params) => {
 	requestUrl.searchParams.append("routeType", "fastest")
 	requestUrl.searchParams.append("instructionsType", "text")
 	requestUrl.searchParams.append("query", `${originPos}:${destinationPos}`)
+
+	// console.log(requestUrl)
 
 	const response = await fetch(requestUrl.toString()).then((res) => res.json())
 	return response

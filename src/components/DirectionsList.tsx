@@ -14,9 +14,11 @@ export const DirectionsList = ({ directions, view, setView }: Props) => {
 			{Object.keys(directions).length > 0 &&
 				directions.instructions.map((step: any) => {
 					return (
-						<List.Item>
-							<Text>{step.message}</Text>
-							<Text>in {step.routeOffsetInMeters} meters</Text>
+						<List.Item key={step.routeOffsetInMeters}>
+							<Text style={{ fontSize: "1.5rem" }}>{step.message}</Text>
+							<Text style={{ fontSize: "1.5rem" }}>
+								in {step.routeOffsetInMeters} meters
+							</Text>
 						</List.Item>
 					)
 				})}
