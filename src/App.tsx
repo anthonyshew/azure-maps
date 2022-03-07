@@ -10,10 +10,20 @@ import { AuthenticationType } from "azure-maps-control"
 import { useViewportSize } from "@mantine/hooks"
 import { useUserGeo } from "./hooks/useUserGeo"
 import { renderPoint } from "./components/renderPoints"
+import { useEffect } from "react"
+import { search } from "./utils/search"
 
 const App = () => {
 	const { height, width } = useViewportSize()
 	const { userLatitude, userLongitude } = useUserGeo()
+
+	useEffect(() => {
+		if (userLatitude && userLongitude) {
+			search({ latitude: userLatitude, longitude: userLongitude }).then((res) =>
+				console.log(res)
+			)
+		}
+	}, [userLongitude, userLatitude])
 
 	return (
 		<MantineProvider withNormalizeCSS>
@@ -26,7 +36,7 @@ const App = () => {
 									authType: AuthenticationType.subscriptionKey,
 									subscriptionKey: process.env.REACT_APP_MAPS_API_KEY
 								},
-								center: [userLatitude, userLongitude],
+								center: [userLongitude, userLatitude],
 								zoom: 12
 							}}
 						>

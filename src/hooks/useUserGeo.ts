@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 
 /** Use the user's current location in our application! */
 export const useUserGeo = () => {
-	const [position, setPosition] = useState({
-		userLatitude: 0,
-		userLongitude: 0
+	const [position, setPosition] = useState<{
+		userLatitude: number | undefined
+		userLongitude: number | undefined
+	}>({
+		userLatitude: undefined,
+		userLongitude: undefined
 	})
 
 	const [error, setError] = useState("")
@@ -18,8 +21,8 @@ export const useUserGeo = () => {
 		const onChange = ({ coords }: { coords: GeolocationCoordinates }) => {
 			if (process.env.REACT_APP_IS_DEV) {
 				return setPosition({
-					userLatitude: -112.0269,
-					userLongitude: 33.5234
+					userLongitude: -112.0269,
+					userLatitude: 33.5234
 				})
 			}
 
