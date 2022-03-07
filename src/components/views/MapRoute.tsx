@@ -7,7 +7,7 @@ import {
 import { AuthenticationType } from "azure-maps-control"
 import { renderPoint } from "../renderPoint"
 import { renderRoute } from "../renderRoute"
-import { RouteDirections } from "../RouteDirections"
+import { DirectionsList } from "../DirectionsList"
 import { useViewportSize } from "@mantine/hooks"
 
 interface Props {
@@ -72,7 +72,7 @@ export const MapRoute = ({ mapRoute, userLatitude, userLongitude }: Props) => {
 						</AzureMap>
 					</AzureMapsProvider>
 				</div>
-				<RouteDirections directions={mapRoute.guidance} />
+				<DirectionsList directions={mapRoute.guidance} />
 			</div>
 		)
 	}

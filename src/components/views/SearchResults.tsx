@@ -8,8 +8,9 @@ import { AuthenticationType } from "azure-maps-control"
 import { renderPoint } from "../renderPoint"
 import { useSearchParks } from "../../hooks/useSearchParks"
 import { useViewportSize } from "@mantine/hooks"
-import { PoiList } from "../PoiList"
+import { LowerList } from "../LowerList"
 import { Dispatch, SetStateAction } from "react"
+import { PointsList } from "../PointsList"
 
 interface Props {
 	userLatitude: number
@@ -83,7 +84,11 @@ export const SearchResults = ({
 						</AzureMap>
 					</AzureMapsProvider>
 				</div>
-				<PoiList points={points} setView={setView} setMapRoute={setMapRoute} />
+				<PointsList
+					points={points}
+					setView={setView}
+					setMapRoute={setMapRoute}
+				/>
 			</div>
 		)
 	}

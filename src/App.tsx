@@ -28,7 +28,7 @@ const App = () => {
 	return (
 		<MantineProvider withNormalizeCSS>
 			<Logo />
-			<div style={{ height: height / 2, width }}>
+			<div style={{ width }}>
 				{view === "pins" && !!userLatitude && !!userLongitude && (
 					<SearchResults
 						view={view}
