@@ -8,7 +8,6 @@ import { AuthenticationType } from "azure-maps-control"
 import { renderPoint } from "../renderPoint"
 import { useSearchParks } from "../../hooks/useSearchParks"
 import { useViewportSize } from "@mantine/hooks"
-import { LowerList } from "../LowerList"
 import { Dispatch, SetStateAction } from "react"
 import { PointsList } from "../PointsList"
 
