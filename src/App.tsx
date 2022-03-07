@@ -1,4 +1,5 @@
 import "./App.css"
+import { useState } from "react"
 import {
 	AzureMap,
 	AzureMapDataSourceProvider,
@@ -12,18 +13,24 @@ import { useUserGeo } from "./hooks/useUserGeo"
 import { renderPoint } from "./components/renderPoints"
 import { useEffect } from "react"
 import { search } from "./utils/search"
+import { IPoi } from "./types"
 
 const App = () => {
 	const { height, width } = useViewportSize()
 	const { userLatitude, userLongitude } = useUserGeo()
+	const [points, setPoints] = useState<IPoi[]>([])
 
 	useEffect(() => {
 		if (userLatitude && userLongitude) {
-			search({ latitude: userLatitude, longitude: userLongitude }).then((res) =>
-				console.log(res)
+			search({ latitude: userLatitude, longitude: userLongitude }).then(
+				(res) => {
+					if (res) return setPoints(res.results)
+				}
 			)
 		}
 	}, [userLongitude, userLatitude])
+
+	console.log(points)
 
 	return (
 		<MantineProvider withNormalizeCSS>
@@ -52,14 +59,26 @@ const App = () => {
 									options={{
 										textOptions: {
 											textField: ["get", "title"],
-											offset: [0, 1]
+											offset: [0, 1.5]
 										}
 									}}
 								/>
 								{renderPoint({
 									latitude: userLatitude,
-									longitude: userLongitude
+									longitude: userLongitude,
+									title: "Your Location"
 								})}
+								{points.length > 0 ? (
+									points.map((point) => {
+										return renderPoint({
+											latitude: point.position.lat,
+											longitude: point.position.lon,
+											title: point.poi.name
+										})
+									})
+								) : (
+									<></>
+								)}
 							</AzureMapDataSourceProvider>
 						</AzureMap>
 					</AzureMapsProvider>

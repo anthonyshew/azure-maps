@@ -1,14 +1,20 @@
 import { AzureMapFeature, IAzureMapFeature } from "react-azure-maps"
 
-export const renderPoint = (point: any): IAzureMapFeature => {
-	const { longitude, latitude } = point
+interface Params {
+	longitude: number
+	latitude: number
+	title: string
+}
+
+export const renderPoint = (point: Params): IAzureMapFeature => {
+	const { longitude, latitude, title } = point
 
 	return (
 		<AzureMapFeature
 			type="Point"
 			coordinate={[longitude, latitude]}
 			properties={{
-				title: "Your Current Location"
+				title
 			}}
 		/>
 	)
