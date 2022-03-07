@@ -17,7 +17,7 @@ interface Props {
 	>
 }
 
-const PoiList = ({ points, setView, setMapRoute }: Props) => {
+export const PoiList = ({ points, setView, setMapRoute }: Props) => {
 	const { userLatitude, userLongitude } = useUserGeo()
 
 	return (
@@ -49,5 +49,3 @@ const PoiList = ({ points, setView, setMapRoute }: Props) => {
 		</List>
 	)
 }
-
-export default PoiList

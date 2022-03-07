@@ -5,7 +5,7 @@ interface Params {
 }
 
 export const renderRoute = ({ points }: Params): IAzureMapFeature => {
-	const formattedPoints = points.map((point: any) => [
+	const formattedPoints = points?.map((point: any) => [
 		point.longitude,
 		point.latitude
 	])
