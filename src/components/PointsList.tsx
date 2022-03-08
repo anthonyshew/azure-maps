@@ -1,7 +1,6 @@
 import { LowerList } from "./LowerList"
 import { List, Title, useMantineTheme } from "@mantine/core"
 import { Dispatch, SetStateAction } from "react"
-import { useUserGeo } from "../hooks/useUserGeo"
 import { IPoi } from "../types"
 import { getRoute } from "../utils/getRoute"
 
